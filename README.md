@@ -26,12 +26,13 @@ A smart IoT weather station built with **ESP32**, capable of collecting environm
 - Grafana (Real-time visualization)
 
 ## 🖼️ Project Screenshots
-> 📸 Add your screenshots here after uploading to the repository.
+> 📸
+[Grafana Dashboard](images/Grafana_Dashboard.png)
+> [InfluxDB Data Explorer](images/InfluxDB_Data_Explorer.png)
+> [Node-RED Flow](images/Mini_WeatherStation_NodeRED_Flow.png)
+> [Containers List](images/Containers_List.png)
+> [Prototype](images/Prototype.jpg)
 
-```markdown
-![Grafana Dashboard](images/grafana_dashboard.png)
-![OLED UI](images/oled_ui_sample.png)
-```
 
 ---
 
