@@ -1,0 +1,243 @@
+[
+    {
+        "id": "f0d8cbf46cc4eed6",
+        "type": "tab",
+        "label": "Weather_Station",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2f58794a9a399f6f",
+        "type": "debug",
+        "z": "f0d8cbf46cc4eed6",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "8aa083bf39b011ea",
+        "type": "mqtt in",
+        "z": "f0d8cbf46cc4eed6",
+        "name": "",
+        "topic": "weatherstation",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 820,
+        "y": 160,
+        "wires": [
+            [
+                "2f58794a9a399f6f",
+                "78d7317c3e95aeeb",
+                "8863211dd58798aa"
+            ]
+        ]
+    },
+    {
+        "id": "8863211dd58798aa",
+        "type": "influxdb out",
+        "z": "f0d8cbf46cc4eed6",
+        "influxdb": "",
+        "name": "",
+        "measurement": "miniweatherstation",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "xmind",
+        "bucket": "nodered",
+        "x": 1140,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "52136c8fff09f6da",
+        "type": "inject",
+        "z": "f0d8cbf46cc4eed6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 794.0000228881836,
+        "y": 721.0000095367432,
+        "wires": [
+            [
+                "c421870a4a6daae4"
+            ]
+        ]
+    },
+    {
+        "id": "62bece9c50b76633",
+        "type": "inject",
+        "z": "f0d8cbf46cc4eed6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 794.0000228881836,
+        "y": 801.0000095367432,
+        "wires": [
+            [
+                "c421870a4a6daae4"
+            ]
+        ]
+    },
+    {
+        "id": "c421870a4a6daae4",
+        "type": "mqtt out",
+        "z": "f0d8cbf46cc4eed6",
+        "name": "",
+        "topic": "fan",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "",
+        "x": 1094.0000228881836,
+        "y": 761.0000095367432,
+        "wires": []
+    },
+    {
+        "id": "77d172f61cadbe78",
+        "type": "debug",
+        "z": "f0d8cbf46cc4eed6",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1217.0000267028809,
+        "y": 578.0000076293945,
+        "wires": []
+    },
+    {
+        "id": "87783e752b6b3e85",
+        "type": "mqtt out",
+        "z": "f0d8cbf46cc4eed6",
+        "name": "",
+        "topic": "fan",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "",
+        "x": 1230,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "2a370782ee9d4c60",
+        "type": "debug",
+        "z": "f0d8cbf46cc4eed6",
+        "name": "debug 20",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "78d7317c3e95aeeb",
+        "type": "function",
+        "z": "f0d8cbf46cc4eed6",
+        "name": "function 11",
+        "func": "let temp = parseFloat(msg.payload[\"temperature\"].toFixed(2));\nmsg.payload = temp;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 380,
+        "wires": [
+            [
+                "2a370782ee9d4c60",
+                "9abe7cf783018ffd"
+            ]
+        ]
+    },
+    {
+        "id": "9abe7cf783018ffd",
+        "type": "hysteresis",
+        "z": "f0d8cbf46cc4eed6",
+        "name": "",
+        "ThresholdType": "fixed",
+        "ThresholdRising": "31",
+        "ThresholdFalling": "29",
+        "TopicThreshold": "",
+        "TopicCurrent": "",
+        "ThresholdDeltaRising": "",
+        "ThresholdDeltaFalling": "",
+        "InitialMessage": false,
+        "OutRisingType": "bool",
+        "OutRisingValue": "true",
+        "OutFallingType": "bool",
+        "OutFallingValue": "false",
+        "OutTopicType": "top",
+        "OutTopicValue": "",
+        "DynRaiseError": false,
+        "x": 1040,
+        "y": 580,
+        "wires": [
+            [
+                "77d172f61cadbe78",
+                "87783e752b6b3e85"
+            ]
+        ]
+    }
+]
